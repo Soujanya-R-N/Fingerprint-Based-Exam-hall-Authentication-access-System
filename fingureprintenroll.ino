@@ -25,7 +25,7 @@ void setup()
   // set the data rate for the sensor serial port
   finger.begin(57600);
   
-  if (finger.verifyPassword()) {
+  if (finger.verifyPashsword()) {
     Serial.println("Found fingerprint sensor!");
   } else {
     Serial.println("Did not find fingerprint sensor :(");
@@ -60,7 +60,8 @@ void loop()                     // run over and over again
 uint8_t getFingerprintEnroll() {
 
   int p = -1;
-  Serial.print("Waiting for valid finger to enroll as #"); Serial.println(id);
+  Serial.print("Waiting for valid finger to enroll as #"); 
+  Serial.println(id);
   while (p != FINGERPRINT_OK) {
     p = finger.getImage();
     switch (p) {
@@ -161,7 +162,8 @@ uint8_t getFingerprintEnroll() {
   }
   
   // OK converted!
-  Serial.print("Creating model for #");  Serial.println(id);
+  Serial.print("Creating model for #"); 
+  Serial.println(id);
   
   p = finger.createModel();
   if (p == FINGERPRINT_OK) {
